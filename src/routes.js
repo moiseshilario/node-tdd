@@ -1,15 +1,9 @@
 const routes = require('express').Router();
 
-const { User } = require('./app/models');
+const SessionController = require('./app/controllers/SessionController');
 
-routes.get('/', async (req, res) => {
-  const user = await User.create({
-    name: 'Test tdd',
-    email: 'email@test.com',
-    password_hash: '1234'
-  });
+routes.post('/sessions', SessionController.store);
 
-  return res.json({ user });
-});
+routes.get('/dashboard');
 
 module.exports = routes;
